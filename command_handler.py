@@ -1,20 +1,12 @@
-from weather import weather
-from dialog_box import BlackDialog
+from dialog_box import create_dialog_card
 
 
-def command1_handler():
-    # Logic for handling command 1
-    dialog = BlackDialog(None, "Enter Your City")
-
-    # Access the user's input
-    city = dialog.result
-    text = weather(city)
-    
-    return text
+def city_card_command_handler():    
+    return create_dialog_card()
 
 
 def get_command_handler(command_name):
     if str(command_name).lower() == "/weather":
-        return command1_handler
+        return city_card_command_handler
     else:
         return None

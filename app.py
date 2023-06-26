@@ -18,12 +18,6 @@ from botbuilder.schema import Activity, ActivityTypes
 from bot import MyBot
 from config import DefaultConfig
 
-import tkinter as tk
-from tkinter import simpledialog
-from weather import weather
-from dialog_box import BlackDialog
-from command_handler import get_command_handler
-
 CONFIG = DefaultConfig()
 
 # Create adapter.
@@ -71,15 +65,16 @@ async def messages(req: Request) -> Response:
     # Main bot message handler.
     if "application/json" in req.headers["Content-Type"]:
         body = await req.json()
+        
     else:
         return Response(status=415)
     
-   
-    command_handler = get_command_handler(body['text'])
-    if command_handler:
-        body['text'] = command_handler()
+    # command_name = body['text']
+    # command_handler = get_command_handler(command_name)
+    # if command_handler:
+    #     body['text'] = command_handler()
     
-
+    print(body)
     activity = Activity().deserialize(body)
     auth_header = req.headers["Authorization"] if "Authorization" in req.headers else ""
 

@@ -20,5 +20,5 @@ def weather(city):
         text = ('Please enter a valid city')
 
 
-        
+
     return text

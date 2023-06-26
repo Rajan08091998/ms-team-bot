@@ -1,18 +1,27 @@
-import tkinter as tk
-import tkinter as tk
-from tkinter import simpledialog
+from botbuilder.core import CardFactory
 
-class BlackDialog(simpledialog.Dialog):
-    def body(self, master):
-        self.configure(bg='black')
-        tk.Label(master, text="City:", fg='white', bg='black').grid(row=0)
-        self.entry = tk.Entry(master, bg='black', fg='white')
-        self.entry.grid(row=0, column=1)
-        return self.entry  # Focus on the entry field
 
-    def apply(self):
-        self.result = self.entry.get()
+def create_dialog_card():
+    
 
-# Create the black-themed dialog box
-
+    card_data =  {
+        "type": "AdaptiveCard",
+        "body": [
+            {
+                "type": "Input.Text",
+                "id": "city",
+                "placeholder": "Enter City Name"
+            },
+            
+        ],
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": "Submit",
+            }
+        ]
+    }
+    
+    
+    return CardFactory.adaptive_card(card_data)
 
